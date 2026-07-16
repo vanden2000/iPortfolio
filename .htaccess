@@ -1,0 +1,16 @@
+Options -MultiViews
+RewriteEngine On
+RewriteBase /
+
+# Serve existing files/directories directly
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Redirect all other requests to index.html (single-page app fallback)
+RewriteRule ^ index.html [L]
+
+DirectoryIndex index.html
+
+# Optional: return index.html for 404s
+ErrorDocument 404 /index.html
